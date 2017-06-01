@@ -22,8 +22,6 @@ Checking “show summary graphs” at the top of the page will graph metrics for
 Supports: **Amazon Linux, CentOS, Debian, RHEL, Ubuntu**
 
     $ sudo DD_API_KEY=<your-api-key> bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-process-agent-install/master/install_agent.sh)"
- 
-*If you have issues with installation, please reach out to support@datadoghq.com*
 
 ### Usage
 
