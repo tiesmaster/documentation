@@ -13,14 +13,14 @@ Any Cloud Foundry deployment can send metrics and events to Datadog. The data he
 There are three points of integration with Datadog, each of which achieves a different goal:
 
 * **Datadog Agent BOSH release** — Install the Datadog Agent on every node in your deployment to track system, network, and disk metrics. Enable any other Agent checks you wish.
-* **Datadog Firehose Nozzle** — Deploy one or more Datadog Firehose Nozzle jobs. Each job taps into your deployment's Loggregator Firehose and sends all metrics it sees to Datadog.
+* **Datadog Firehose Nozzle** — Deploy one or more Datadog Firehose Nozzle jobs. The jobs tap into your deployment's Loggregator Firehose and send all non-container metrics to Datadog.
 * **Datadog plugin for BOSH Health Monitor** — Configure your BOSH Director's Health Monitor to send heartbeats (as metrics) and alerts (as events) from each node's BOSH Agent to Datadog.
 
 If you do NOT administer a Cloud Foundry deployment—i.e. if you're an end user deploying applications onto a Cloud Foundry deployment—this page cannot help you.
 
 # Prerequisites
 
-You need to have a working Cloud Foundry deployment and access to the BOSH Director that manages it. You also need BOSH CLI to deploy each integration, though you may use either major version—[v1](https://bosh.io/docs/bosh-cli.html) or [v2](https://bosh.io/docs/cli-v2.html#install).
+You need to have a working Cloud Foundry deployment and access to the BOSH Director that manages it. You also need BOSH CLI to deploy each integration. You may use either major version of the CLI—[v1](https://bosh.io/docs/bosh-cli.html) or [v2](https://bosh.io/docs/cli-v2.html#install).
 
 To configure the Datadog plugin for BOSH Health Monitor, you need access to the `state.json` (or similarly named) file that accurately reflects the current state of your BOSH Director.
 
@@ -272,7 +272,7 @@ On the [Metrics explorer](https://app.datadoghq.com/metric/explorer) page in Dat
 
 The BOSH Health Monitor Datadog plugin emits an event to Datadog for any alert it receives from your deployment's BOSH Agents. Read the [BOSH Health Monitor docs](https://bosh.io/docs/monitoring.html) to see what kinds of alerts might show up in your Datadog event stream.
 
-The BOSH Agent sets a severity for each alert it generates, and the Datadog Health Monitor plugin uses that severity to prioritize the event. An alert with severity Alert, Critical, or Error becomes a Normal priority event in Datadog. An alert with other severities becomes a Low priority event.
+The BOSH Agent sets a severity for each alert it generates, and the Datadog Health Monitor plugin uses that severity to prioritize the event it emits. Alerts with an Error, Critical, or Alert severity become Normal priority events in Datadog. Alerts with any other severity become Low priority events.
 
 # Metrics
 
