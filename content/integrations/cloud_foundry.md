@@ -24,15 +24,11 @@ You need to have a working Cloud Foundry deployment and access to the BOSH Direc
 
 To configure the Datadog plugin for BOSH Health Monitor, you need access to the `state.json` (or similarly named) file that accurately reflects the current state of your BOSH Director.
 
-# Install, Deploy, and Configure
-
-## Datadog Agent BOSH Release
+# Install the Datadog Agent BOSH Release
 
 Datadog provides tarballs of the Datadog Agent packaged as a BOSH release. You can upload the latest release to your BOSH Director and then easily install it on every node in your deployment as an [addon](https://bosh.io/docs/runtime-config.html#addons) (i.e. the same way a Director deploys the BOSH Agent to all nodes).
 
-### Install the Agent everywhere
-
-#### Upload Datadog's release to your BOSH Director
+### Upload Datadog's release to your BOSH Director
 
 ~~~
 # BOSH CLI v1
@@ -44,7 +40,7 @@ bosh upload-release https://github.com/DataDog/datadog-agent-boshrelease/release
 
 If you'd like to create your own release, see the [Datadog Agent BOSH Release repository](https://github.com/DataDog/datadog-agent-boshrelease).
 
-#### Configure the Agent as an addon in your BOSH Director
+### Configure the Agent as an addon in your BOSH Director
 
 Add the following to your BOSH Director's runtime configuration file (e.g. `runtime.yml`):
 
@@ -70,7 +66,7 @@ addons:
 
 If you don't have a local copy of the runtime configuration, get it from the Director (`bosh runtime-config`) and add the above to it. If the Director's runtime configuration is empty, add the above to a new `runtime.yml`.
 
-#### Enable extra Agent checks
+### Enable extra Agent checks
 
 For each extra Agent check you want to enable across your deployment, add its configuration under the `properties.dd.integrations` key, e.g.:
 
@@ -93,7 +89,7 @@ You cannot configure a check for a subset of nodes in your deployment; everythin
 
 To customize configuration for the default checks—system, network, disk, and ntp—see the [full list of configuration options](https://github.com/DataDog/datadog-agent-boshrelease/blob/master/jobs/dd-agent/spec) for the Datadog Agent BOSH release.
 
-#### Sync the runtime configuration to the Director
+### Sync the runtime configuration to the Director
 
 ~~~
 # BOSH CLI v1
@@ -103,7 +99,7 @@ bosh update runtime-config runtime.yml
 bosh update-runtime-config runtime.yml
 ~~~
 
-#### Redeploy your Cloud Foundry deployment
+### Redeploy your Cloud Foundry deployment
 
 ~~~
 # BOSH CLI v1
@@ -116,7 +112,7 @@ bosh -n -d yourDeployment deploy yourDeploymentManifest.yml
 
 Since runtime configuration applies globally, BOSH will redeploy every node in your deployment. If you have more than one deployment, redeploy those, too, to install the Datadog Agent everywhere.
 
-### Verify the Agent installs
+### Verify the Agent is installed everywhere
 
 The easiest way to check that Agent installs were successful is to filter for them in the [Host map page](https://app.datadoghq.com/infrastructure/map) in Datadog. The Agent BOSH release tags each host with a generic `cloudfoundry` tag, so filter by that, and optionally group hosts by any tag you wish (e.g. `bosh_job`), as in the following screenshot:
 
@@ -126,13 +122,11 @@ Click on any host to zoom in, then click 'system' within its hexagon to make sur
 
 ![cloud-foundry-host-map-detail](/static/images/cloud-foundry-host-map-detail.png)
 
-## Datadog Firehose Nozzle
+# Deploy the Datadog Firehose Nozzle
 
 As with the Datadog Agent, Datadog provides a BOSH release of the Datadog Firehose Nozzle. After uploading the release to your Director, you can add the Nozzle to an existing deployment, or create a new deployment that only includes the Nozzle. The instructions below assume you're adding it to an existing Cloud Foundry deployment that has a working Loggregator Firehose.
 
-### Deploy one or more Nozzle jobs
-
-#### Upload Datadog's release to your BOSH Director:
+### Upload Datadog's release to your BOSH Director
 
 ~~~
 # BOSH CLI v1
@@ -144,7 +138,9 @@ bosh upload-release https://github.com/DataDog/datadog-firehose-nozzle-release/r
 
 If you'd like to create your own release, see the [Datadog Firehose Nozzle release repository](https://github.com/DataDog/datadog-firehose-nozzle-release).
 
-#### In the manifest that contains your UAA configuration, add a new client for the Datadog Nozzle so the job(s) can access the Firehose:
+### Configure a UAA client
+
+In the manifest that contains your UAA configuration, add a new client for the Datadog Nozzle so the job(s) can access the Firehose:
 
 ~~~
 uaa:
@@ -160,14 +156,16 @@ uaa:
 
 And redeploy the deployment to add the user.
 
-#### Configure a Nozzle job in your main Cloud Foundry deployment manifest (e.g. cf-manifest.yml):
+### Add Nozzle jobs
+
+Configure one or more Nozzle jobs in your main Cloud Foundry deployment manifest (e.g. cf-manifest.yml):
 
 ~~~
 jobs:
 #- instances: 4
 #  name: some_other_job
 #  ...
-- instances: 1 
+- instances: 1            # add more instances if one job cannot keep up with the Firehose
   name: datadog_nozzle_z1
   networks:
     - name: cf1           # some network you've configured elsewhere in the manifest
@@ -210,7 +208,7 @@ releases:
     version: $VERSION_YOU_UPLOADED # i.e. 61
 ~~~
 
-#### Redeploy the deployment to deploy the Nozzle
+### Redeploy the deployment
 
 ~~~
 # BOSH CLI v1
@@ -227,13 +225,13 @@ On the [Metrics explorer](https://app.datadoghq.com/metric/explorer) page in Dat
 
 ![cloud-foundry-nozzle-metrics](/static/images/cloud-foundry-nozzle-metrics.png)
 
-## Datadog plugin for BOSH Health Monitor
+# Configure the Datadog plugin for BOSH Health Monitor
 
 This plugin is packaged with the BOSH Health Monitor, so if the Health Monitor is already installed and running on your BOSH Director, you simply need to configure the plugin and redeploy the Director.
 
-### Configure the plugin in your BOSH Director
+### Add the configuration
 
-#### In the manifest originally used to deploy the Director (e.g. bosh.yml), configure the Datadog plugin:
+In the manifest originally used to deploy the Director (e.g. bosh.yml), configure the Datadog plugin:
 
 ~~~
 instance_groups:
@@ -250,7 +248,7 @@ instance_groups:
         pagerduty_service_name: "your_service_name" # optional
 ~~~
 
-#### Redeploy the Director
+### Redeploy the Director
 
 BOSH cannot simply configure the plugin and restart the Health Monitor; it must redeploy the Director entirely. **To do this without without fully wiping the Director—including its persistent disks and its PostgreSQL database—you MUST have a `state.json` (or similarly named) file that accurately reflects the current state of your Director.**
 
