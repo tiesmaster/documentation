@@ -8,7 +8,7 @@ beta: true
 ---
 # Overview
 
-Any Cloud Foundry deployment can send metrics and events to Datadog that help you track the health and availability of all nodes in the deployment, monitor the jobs they run, collect metrics from the Loggregator Firehose, and more.
+Any Cloud Foundry deployment can send metrics and events to Datadog. The data helps you track the health and availability of all nodes in the deployment, monitor the jobs they run, collect metrics from the Loggregator Firehose, and more.
 
 There are three points of integration with Datadog, each of which achieves a different goal:
 
@@ -22,7 +22,7 @@ These integrations are meant for Cloud Foundry deployment administrators, not en
 
 You need to have a working Cloud Foundry deployment and access to the BOSH Director that manages it. You also need BOSH CLI to deploy each integration. You may use either major version of the CLI—[v1](https://bosh.io/docs/bosh-cli.html) or [v2](https://bosh.io/docs/cli-v2.html#install).
 
-To configure the Datadog plugin for BOSH Health Monitor, you need access to the `state.json` (or similarly named) file that accurately reflects the current state of your BOSH Director. If you don't have such a file, you will need to generate one.
+To configure the Datadog plugin for BOSH Health Monitor, you need access to the `state.json` (or similarly named) file that accurately reflects the current state of your BOSH Director. If you don't have such a file, you'll need to [create one](https://bosh.io/docs/cli-envs.html#deployment-state).
 
 # Install the Datadog Agent BOSH Release
 
@@ -32,10 +32,10 @@ Datadog provides tarballs of the Datadog Agent packaged as a BOSH release. You c
 
 ~~~
 # BOSH CLI v1
-bosh upload release https://github.com/DataDog/datadog-agent-boshrelease/releases/download/1.0.5130/datadog-agent-release-1.0.5130.tgz
+bosh upload release 
 
 # BOSH CLI v2
-bosh upload-release https://github.com/DataDog/datadog-agent-boshrelease/releases/download/1.0.5130/datadog-agent-release-1.0.5130.tgz
+bosh upload-release 
 ~~~
 
 If you'd like to create your own release, see the [Datadog Agent BOSH Release repository](https://github.com/DataDog/datadog-agent-boshrelease).
@@ -48,7 +48,7 @@ Add the following to your BOSH Director's runtime configuration file (e.g. `runt
 ---
 releases:
   - name: datadog-agent
-    version: <VERSION_YOU_UPLOADED> # specify the real version, e.g. 1.0.5130, not 'latest'
+    version: <VERSION_YOU_UPLOADED> # specify the real version, i.e. x.y.z, not 'latest'
 
 addons:
 - name: datadog
@@ -64,7 +64,9 @@ addons:
       generate_processes: true            # to enable the process check
 ~~~
 
-If you don't have a local copy of the runtime configuration, get it from the Director (`bosh runtime-config`) and add the above to it. If the Director's runtime configuration is empty, add the above to a new `runtime.yml`.
+To see which `datadog-agent` release version you uploaded earlier, run `bosh releases`.
+
+If you don't have a local copy of the runtime configuration, create a `runtime.yml` with the current runtime configuration (`bosh runtime-config`) and add the above YAML to it. If the Director's runtime configuration is empty, create a new `runtime.yml` containing only the above YAML.
 
 ### Enable extra Agent checks
 
@@ -130,10 +132,10 @@ As with the Datadog Agent, Datadog provides a BOSH release of the Datadog Fireho
 
 ~~~
 # BOSH CLI v1
-bosh upload release https://github.com/DataDog/datadog-firehose-nozzle-release/releases/download/61/datadog-firehose-nozzle-release-62.tgz
+bosh upload release http://cloudfoundry.datadoghq.com/datadog-firehose-nozzle/datadog-firehose-nozzle-release-latest.tgz
 
 # BOSH CLI v2
-bosh upload-release https://github.com/DataDog/datadog-firehose-nozzle-release/releases/download/61/datadog-firehose-nozzle-release-62.tgz
+bosh upload-release http://cloudfoundry.datadoghq.com/datadog-firehose-nozzle/datadog-firehose-nozzle-release-latest.tgz
 ~~~
 
 If you'd like to create your own release, see the [Datadog Firehose Nozzle release repository](https://github.com/DataDog/datadog-firehose-nozzle-release).
@@ -177,7 +179,7 @@ jobs:
     datadog:
       api_key: <YOUR_DATADOG_API_KEY>
       api_url: https://app.datadoghq.com/api/v1/series
-      flush_duration_seconds: 15          # seconds between flushes to Datadog. Default is 15.
+      flush_duration_seconds: 15 # seconds between flushes to Datadog. Default is 15.
     loggregator:
       # do NOT append '/firehose' or even a trailing slash to the URL; 'ws://<host>:<port>' will do
       traffic_controller_url: <LOGGREGATOR_URL> # e.g. ws://traffic-controller.your-cf-domain.com:8081
@@ -192,7 +194,7 @@ jobs:
       url: <UAA_URL> # e.g. https://uaa.your-cf-domain.com:8443
 ~~~
 
-See [all configuration options](https://github.com/DataDog/datadog-firehose-nozzle-release/blob/master/jobs/datadog-firehose-nozzle/spec) for the Datadog Firehose Nozzle.
+To see all available configuration options, check the [Datadog Firehose Nozzle repository](https://github.com/DataDog/datadog-firehose-nozzle-release/blob/master/jobs/datadog-firehose-nozzle/spec).
 
 In the same manifest, add the Datadog Nozzle release name and version:
 
@@ -202,8 +204,10 @@ releases:
 #   version: x.y.z
 # ...
   - name: datadog-firehose-nozzle
-    version: $VERSION_YOU_UPLOADED # specify the real version, e.g. 62, not 'latest' 
+    version: $VERSION_YOU_UPLOADED # specify the real version, i.e. x.y.z, not 'latest' 
 ~~~
+
+To see which `datadog-firehose-nozzle` release version you uploaded earlier, run `bosh releases`.
 
 ### Redeploy the deployment
 
@@ -218,13 +222,13 @@ bosh -n -d cf-manifest deploy cf-manifest.yml
 
 ### Verify the Nozzle is collecting
 
-On the [Metrics explorer](https://app.datadoghq.com/metric/explorer) page in Datadog, search for metrics beginning with the prefix you configured (i.e. `cloudfoundry.nozzle`):
+On the [Metrics explorer](https://app.datadoghq.com/metric/explorer) page in Datadog, search for metrics beginning `cloudfoundry.nozzle`:
 
 ![cloud-foundry-nozzle-metrics](/static/images/cloud-foundry-nozzle-metrics.png)
 
 # Configure the Datadog plugin for BOSH Health Monitor
 
-This plugin is packaged with the BOSH Health Monitor, so if the Health Monitor is already installed and running on your BOSH Director, you simply need to configure the plugin and redeploy the Director.
+The plugin is packaged with the BOSH Health Monitor, so if the Health Monitor is already installed and running on your BOSH Director, you just need to configure the plugin and redeploy the Director.
 
 ### Add the configuration
 
