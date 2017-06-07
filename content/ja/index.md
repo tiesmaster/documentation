@@ -54,8 +54,8 @@ capabilities at a high level. -->
 
 このドキュメントは、次の二つの目的に基づいてコンテンツを分類しています。
 
-- **ガイド**部分では、Agentのインストールや、アラートの設定など、特定の課題を実現していく方法について解説します。
-- **レファレンス**部分では、より資料情報に近い、基礎的な情報を提供していきます。
+-**ガイド**部分では、Agentのインストールや、アラートの設定など、特定の課題を実現していく方法について解説します。
+-**レファレンス**部分では、より資料情報に近い、基礎的な情報を提供していきます。
 
 先ずは、["Datadogが提供するサービスの概要"][104]を一読することをお勧めします。このドキュメントでは、Datadog内で利用できる各種監視機能の概要を素早く把握することができます。
 
@@ -84,9 +84,9 @@ GitHubの[issues][9]でお知らせください。メッセージ欄の内容を
 [7]: /help/#irc
 [8]: https://help.datadoghq.com/hc/en-us/requests/new
 [9]: https://github.com/DataDog/documentation/issues
-[102]: /ja/guides/metrics/
-[103]: /ja/graphing/
-[104]: /ja/guides/overview/
-[106]: /ja/help/#email
-[107]: /ja/help/#irc
-[111]: /ja/guides/monitoring/
+[102]: ./guides/metrics/
+[103]: ./graphing/
+[104]: ./guides/overview/
+[106]: ./help/#email
+[107]: ./help/#irc
+[111]: ./guides/monitoring/

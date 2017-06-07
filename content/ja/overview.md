@@ -28,7 +28,7 @@ Agent, or maybe you're just curious about [what (else) Datadog can do for you](h
 This document gives a high level overview of Datadog's capabilities and how
 it can help you bring your infrastructure to heel. -->
 
-Datadog Agentの[インストール](/ja/guides/basic_agent_usage/)は、無事終了しましたか。もしかしたら、[Datadogが提供するサービス](http://www.datadoghq.com/product/)に興味を持っていただいたばかりかもしれませんね。
+Datadog Agentの[インストール](./guides/basic_agent_usage/)は、無事終了しましたか。もしかしたら、[Datadogが提供するサービス](http://www.datadoghq.com/product/)に興味を持っていただいたばかりかもしれませんね。
 
 このドキュメントでは、**Datadogの各機能**と**それらの有要性**を解説します。
 
@@ -117,7 +117,7 @@ Host Mapは、`Infrastructure`メニューのドロップダウンメニュー�
 * 利用パターンの検出
 * リソース利用の最適化
 
-Host Map表示について詳しく知り対場合は、[Host Map ガイド](/ja/guides/hostmap)ページを参照してください。
+Host Map表示について詳しく知り対場合は、[Host Map ガイド](./guides/hostmap)ページを参照してください。
 
 
 <!-- <h2 id="events">Events</h2>
@@ -237,7 +237,7 @@ to pull the data from.</li>
 <h2 id="alerting">高度なアラート設定</h2>
 <img src="/static/images/alert.png" style="width:100%; border:1px solid #777777"/>
 
-[アラート機能](/ja/guides/alerting/)によって、特定のメトリクスの集計がしきい値を超えた場合に通知する機能を実現することができます:
+[アラート機能](./guides/alerting/)によって、特定のメトリクスの集計がしきい値を超えた場合に通知する機能を実現することができます:
 <ul>
 <li>インフラ全体のメトリクスのaverage, max, min, or sumを基に</li>
 <li>ホスト毎のメトリクスのaverage, max, min, or sumを基に</li>
