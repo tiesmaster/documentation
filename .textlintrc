@@ -1,0 +1,14 @@
+{
+  "filters": {
+    "comments": true,
+    "whitelist": true
+  },
+  "rules": {
+    "no-todo": true,
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": true,
+    "preset-japanese": true,
+    "preset-jtf-style": true,
+    "terminology": true
+  }
+}

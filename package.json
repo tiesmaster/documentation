@@ -1103,6 +1103,6 @@
     "plugins": {
       "remark-preset-lint-recommended": true,
       "validate-links": true
-    } 
+    }
   }
 }
