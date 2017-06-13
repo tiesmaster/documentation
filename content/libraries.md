@@ -11,32 +11,36 @@ The following table lists Datadog-official and community contributed API and Dog
 
 ### Tracing (APM) Client Libraries
 
-The following table lists Datadog-official and community contributed [Trace]](/tracing/) client libraries.
+The following table lists Datadog-official and community contributed [Trace](/tracing/) client libraries.
 
 <%= print_tracing_library_table %>
 
-### Projects Using the Libraries
+### Community Projects
 
-The [API](/api/) and [DogStatsD](/guides/dogstatsd/) pages include code snippets showing how to use some of the libraries, but seeing how they're used in real projects is even more helpful. Here are a few projects using the libraries:
+#### Ansible
+{: #community-integration-ansible}
 
-* [ansible-modules-extras][47] uses datadogpy in its [monitoring section][46]
-* [consul2dogstats][96] uses zorkian/go-datadog-api to submit consul service counts to Datadog
+In addition to the official Ansible integration, the [monitoring section][46] of the [ansible-modules-extras][47] repository contains modules that interact with Datadog.
 
+#### Consul
+{: #community-integration-consul}
+
+Publish consul service counts into Datadog via dogstatsd with [this library][96].
 
 #### Dogscaler
 {: #community-integration-dogscaler}
 
-  * Scale up auto-scale groups based on the results of a datadog query with [Dogscaler][97].
+Scale up auto-scale groups based on the results of a datadog query with [Dogscaler][97].
 
 #### FreeSwitch
 {: #community-integration-freeswitch}
 
-  * This is for a [FreeSwitch ESL ][48] application to export statistics to DataDog using the dogstatsd API and is written by [WiMacTel][49].
+This is for a [FreeSwitch ESL ][48] application to export statistics to DataDog using the dogstatsd API and is written by [WiMacTel][49].
 
 #### Google Analytics
 {: #community-integration-google-analytics}
 
-  * You can get data into Datadog from Google Analytics using our API with [this library][50].
+You can get data into Datadog from Google Analytics using our API with [this library][50].
 
 #### Logstash Output
 {: #community-integration-logstash}
@@ -46,19 +50,18 @@ The [API](/api/) and [DogStatsD](/guides/dogstatsd/) pages include code snippets
 
 #### NGINX LUA
 {: #community-integration-nginx-lua}
-
   * Emit custom metrics directly from NGINX configurations using the [nginx_lua_datadog][72] module in your LUA scripts.
   * [lua-resty-dogstatsd][79] is an extension developed by  [mediba inc][80], which enables emiting metrics, events, and service checks to DogStatsD protocol. lua-resty-dogstatsd is released as GPLv3 and relies on the nginx cosocket API.
 
 #### Phusion Passenger
 {: #community-integration-passenger}
 
-  * Send health metrics from Phusion's Passenger server using the [passenger-datadog-monitor][77] written by [Stevenson Jean-Pierre][78]
+Send health metrics from Phusion's Passenger server using the [passenger-datadog-monitor][77] written by [Stevenson Jean-Pierre][78]
 
 #### Pid-stats
 {: #community-integration-pid-stats}
 
-  * This [library][51] will allow you to generate process information from StatsD, given pid files. It was created by [GitterHQ][52].
+This [library][51] will allow you to generate process information from StatsD, given pid files. It was created by [GitterHQ][52].
 
 #### Saltstack
 {: #community-integration-saltstack}
@@ -66,16 +69,7 @@ The [API](/api/) and [DogStatsD](/guides/dogstatsd/) pages include code snippets
   * [Datadog Saltstack Formula][43]
   * [Datadog Saltstack][44] written by [Luca Cipriani][45].
 
-### Miscellaneous stuff (not client libraries)
-
-  * [scales_datadog][34] - a Datadog backend for the [Scales][35] library, written by [Tommaso Barbugli][36].
-  * [plesk_metrics_datadog][27] - a PHP script to collect metrics from [Plesk][28] by [Israel Viana][29].
-  * [metricks-dogstatsd][24] - a backend for the popular [Metriks][25] gem, written by [Mavenlink][26].
-  * [hotdog][61] - A command-line interface contributed by [Yuu Yamashita][62].
-  * [dd-zipkin-proxy][95] - A simple Zipkin-to-Datadog proxy.
-  * [ecsdog][74] - a standalone Go application that scrapes metrics and events from ECS, and sends them to statsd by [ejholmes][75]
-
-If you've written a Datadog library, write us at [code@datadoghq.com][56] and we'll be happy to add it to the list.
+If you've written a Datadog library and would like to add it to this page, write us at [code@datadoghq.com][9].
 
    [1]: https://github.com/DataDog/datadogpy
    [3]: https://github.com/DataDog/dogapi-rb
