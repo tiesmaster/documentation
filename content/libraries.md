@@ -3,23 +3,25 @@ title: Libraries
 kind: documentation
 ---
 
-The following table lists official and community contributed client libraries for the Datadog API, DogStatsD, and the Tracing (APM) API. Many of the libraries are for submitting metrics, events, and service checks to Datadog, but some are for other purposes (see the **Notes** column).
+### API and DogStatsD Client Libraries
 
+The following table lists Datadog-official and community contributed API and DogStatsD client libraries. A few libraries support both the API and DogStatsD, but most focus on one or the other.
 
-<%= print_library_table %>
+<%= print_classic_library_table %>
 
+### Tracing (APM) Client Libraries
 
-### Community Integrations
+The following table lists Datadog-official and community contributed [Trace]](/tracing/) client libraries.
 
-#### Ansible
-{: #community-integration-ansible}
+<%= print_tracing_library_table %>
 
-  * In addition to our official integration, the [monitoring section][46] of the [ansible-modules-extras][47] repository contains modules that interact with Datadog.
+### Projects Using the Libraries
 
-#### Consul
-{: #community-integration-consul}
+The [API](/api/) and [DogStatsD](/guides/dogstatsd/) pages include code snippets showing how to use some of the libraries, but seeing how they're used in real projects is even more helpful. Here are a few projects using the libraries:
 
-  * Publish consul service counts into Datadog via dogstatsd with [this library][96].
+* [ansible-modules-extras][47] uses datadogpy in its [monitoring section][46]
+* [consul2dogstats][96] uses zorkian/go-datadog-api to submit consul service counts to Datadog
+
 
 #### Dogscaler
 {: #community-integration-dogscaler}
@@ -146,7 +148,7 @@ If you've written a Datadog library, write us at [code@datadoghq.com][56] and we
    [71]: https://github.com/DataDog/datadog-go
    [72]: https://github.com/simplifi/ngx_lua_datadog/
    [73]: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-datadog.html
-   [74]:https://github.com/remind101/ecsdog
+   [74]: https://github.com/remind101/ecsdog
    [75]: http://ejholmes.io/
    [76]: https://github.com/brightcove/hot-shots
    [77]: https://github.com/Sjeanpierre/passenger-datadog-monitor
