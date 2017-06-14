@@ -6,23 +6,45 @@ hideguides: true
 customnav: tracingnav
 ---
 
-### Naming
+<!-- ### Naming
 
 * Service names and resource names **must be lowercase, alphanumeric characters**.
 * Service names and metadata keys are limited to **a maximum length of 50 characters**.
-* Metadata and resource names have **a maximum length of 5000 bytes**.
+* Metadata and resource names have **a maximum length of 5000 bytes**. -->
 
-### Data Retention
+### 命名規則
 
-Trace data is currently being stored for about 36 hours.
+* サービス名とリソース名は、**小文字と英数字である必要があります**。
+* サービス名とメタデータキーは、**最大50文字の長さ**に制限されます。
+* メタデータとリソース名は、**最大長は5000バイト**に制限されます。
 
-### Heroku
 
-Heroku support is currently provided by the Datadog Heroku Buildpack. For more information, please reference [the project on Github](https://github.com/DataDog/heroku-buildpack-datadog)
+<!-- ### Data Retention
 
-### Agent Source
+Trace data is currently being stored for about 36 hours. -->
 
-Tracing is supported in the Datadog Agent for Linux and Docker. For other architectures, you can use the source install (coming soon). Trace agent source code is available on [the Github repo](https://github.com/DataDog/datadog-trace-agent).
+### データ保持期間
+
+トレースのデータは、約36時間保存されています。
+
+
+<!-- ### Heroku
+
+Heroku support is currently provided by the Datadog Heroku Buildpack. For more information, please reference [the project on Github](https://github.com/DataDog/heroku-buildpack-datadog) -->
+
+### Heroku サポート
+
+Herokuサポートは、Datadog Heroku Buildpackによって提供されています。詳細については、[Githubのプロジェクト](https://github.com/DataDog/heroku-buildpack-datadog)を参照してください。
+
+
+<!-- ### Agent Source
+
+Tracing is supported in the Datadog Agent for Linux and Docker. For other architectures, you can use the source install (coming soon). Trace agent source code is available on [the Github repo](https://github.com/DataDog/datadog-trace-agent). -->
+
+### Agent のソースコード
+
+LinuxおよびDockerのDatadog Agentで、トレースをサポートしています。他のアーキテクチャーを利用している場合は、ソースインストールからインストールすることができます。（近々公開予定）。トレースエージェントのソースコードは、[Github repo](https://github.com/DataDog/datadog-trace-agent)で閲覧することができます。
+
 
 ### Verifying Functionality
 
