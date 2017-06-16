@@ -4,7 +4,6 @@ integration_title: Cloud Foundry
 kind: integration
 git_integration_title: cloud_foundry
 newhlevel: true
-beta: true
 ---
 # Overview
 
@@ -79,7 +78,7 @@ For each extra Agent check you want to enable across your deployment, add its co
         directory:
           init_config: {}
           instances:
-            directory: "."</code></pre>
+            directory: "."
         #process:
         #  init_config: {}
         #...
