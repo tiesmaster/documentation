@@ -20,9 +20,9 @@ With Autodiscovery enabled, the Agent runs checks differently.
 
 ### The Differences
 
-First, Autodiscovery uses **templates** for check configuration wherein two template variables—`%%host%%` and `%%port%%`—appear in place of any normally-hardcoded network option values, e.g. `expvar_url: http://%%host%%:%%port%%`. Because orchestration platforms like Docker Swarm deploy (and redeploy) your containers on arbitrary hosts, static files are not suitable for checks that need to find network endpoints. For containers that have more than one IP or exposed port, Autodiscovery can pick the right one using [template variable indexes](#template-variable-indexes).
+First, Autodiscovery uses **templates** for check configuration wherein two template variables—`%%host%%` and `%%port%%`—appear in place of any normally-hardcoded network option values. Because orchestration platforms like Docker Swarm deploy (and redeploy) your containers on arbitrary hosts, static files are not suitable for checks that need to find network endpoints. For example: a template for the Agent's [Go Expvar check](https://github.com/DataDog/integrations-core/blob/master/go_expvar/conf.yaml.example) would contain `expvar_url: http://%%host%%:%%port%%`. For containers that have more than one IP or exposed port, Autodiscovery can pick the right one(s) using [template variable indexes](#template-variable-indexes).
 
-Second, because templates don't identify specific instances of a monitored service—which `%%host%%`? which `%%port%%`?—Autodiscovery needs a **service identifier** for each template so it can find values for the template variables. For Docker, this means identifying the container(s) whose IP(s) and port(s) should be substituted into the template. Autodiscovery can identify Docker containers by [image name or label](#service-identifiers).
+Second, because templates don't identify specific instances of a monitored service—which host? which port?—Autodiscovery needs a **service identifier** for each template so it can find values for the template variables. For Docker, this means identifying the container(s) whose IP(s) and port(s) should be substituted into the template. Autodiscovery can identify Docker containers by [image name or label](#service-identifiers).
 
 Finally, Autodiscovery can load check templates from places other than disk. Other possible **template sources** include key-value (KV) stores like Consul, and, when running on Kubernetes, pod annotations.
 
@@ -108,7 +108,7 @@ Autodiscovery supports Consul, etcd, and Zookeeper as template sources. To use a
 
 #### Configure in `datadog.conf`
 
-In the `datadog.conf` file, set the `sd_config_backend`, `sd_backend_host`, and `sd_backend_port` options to, respectively, the KV type—`etcd`, `consul`, or `zookeeper`—and the location of your KV store:
+In the `datadog.conf` file, set the `sd_config_backend`, `sd_backend_host`, and `sd_backend_port` options to, respectively, the KV type—`etcd`, `consul`, or `zookeeper`—and the IP address and port where your KV store is listening:
 
 ~~~
 # For now only Docker is supported so you just need to un-comment this line.
@@ -137,7 +137,7 @@ Restart the Agent to effect the configuration change.
 
 #### Configure in environment variables
 
-If you prefer to use environment variables, pass the options to the container when starting it::
+If you prefer to use environment variables, pass the options to the container when starting it:
 
 ~~~
 docker service create \
