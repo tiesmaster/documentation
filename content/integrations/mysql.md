@@ -1,5 +1,5 @@
 ---
-title: Datadog-MySQL Integration
+title: MySQL Integration
 integration_title: MySQL
 kind: integration
 git_integration_title: mysql
