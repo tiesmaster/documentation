@@ -1,0 +1,27 @@
+<FOUR_TO_SIX_BIG_SHAPES>
+
+Welcome to Datadog Docs! Do you know what you're looking for?
+
+**Exactly, yes.** Start clicking above or to the left. Read, click, repeat.
+
+**Generally.**: Use the search bar up top. You'll be there in no time.
+
+**Not at all.** Read below for the 10,000 foot view of Datadog.
+
+---
+
+Your application stack is teeming with unused data that's trying to tell a story: Things aren't humming along as well as they could be. Exception thrown. Database queries slowing. Cache misses rising. Upstream service flapping. Error log spamming. Each piece of data chatters its own part of the story, but it's hard to make sense of—or act on meaningfully—when taken separately.
+
+Datadog lets you collect all these metrics, events, and service states in one place that you don't have to manage. Then you can visualize and inter-correlate the data with beautiful graphing, and set flexible alert conditions on it. <another sentence to close out the story metaphor?>
+
+## Collect Everything
+
+Great news: you can collect a wealth of already-available data without writing any code. [Install the Datadog Agent](link to Agent section) everywhere—every server, instance, VM, node, [container-running host](link to docker-dd-agent?)—and then configure any of our 200+ out-of-the-box [integrations](link to Core (Agent) Integrations) to start the metrics flowing to Datadog's backend.
+
+More great news: you can invent custom application metrics by writing a little code. Instrument your own metrics with [DogStatsD]. Trace the execution time of any piece of code with [Datadog APM]. Our [client libraries] for these send your custom metrics to a Datadog Agent, which ships them off to Datadog.
+
+Some of your stack may be services, not servers. Datadog can [collect their chatter](Provider Integrations), too, and these integrations are the easiest of all to install; no Agent required.
+
+## Visualize It
+
+## Monitor It
