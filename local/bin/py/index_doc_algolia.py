@@ -32,7 +32,7 @@ def index_algolia(app_id, api_key, content_path=None):
 
     remove_articles = []
 
-    dirs_exclude = ('js','images','fonts','en','css', 'search')
+    dirs_exclude = ('js', 'json', 'images','fonts','en','css', 'search', 'error')
     files_to_exclude = ('404.html')
 
     docs_host = 'https://docs.datadoghq.com'
