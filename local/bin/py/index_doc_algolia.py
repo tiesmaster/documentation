@@ -97,7 +97,7 @@ def index_algolia(app_id, api_key, content_path=None):
                         url = docs_host+url_path
 
                         article['objectID'] = dirpath+'/'+filename
-                        article['URL'] = url
+                        article['url'] = url
                         article['title'] = title
                         article['body'] = description
                         article['file'] = dirpath+'/'+filename
