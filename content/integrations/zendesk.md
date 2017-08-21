@@ -6,11 +6,9 @@ doclevel: basic
 newhlevel: true
 git_integration_title: zendesk
 ---
-
 {{< img src="integrations/zendesk/zendesk_dash.png" alt="Zendesk Dashboard" >}}
 
 ## Overview
-
 Zendesk is a customer service and support ticket platform that allows you to receive, track and respond to inquiries and requests from customers. Enable this integration to see ticket metrics in Datadog and to create and update tickets from Datadog.
 
 Integrate with Zendesk to:
