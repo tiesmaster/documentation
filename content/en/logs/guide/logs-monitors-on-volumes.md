@@ -12,16 +12,15 @@ further_reading:
 
 The goal of this guide is to explain how to monitor your log usage thanks to estimated usage metrics. This guide goes through the following steps:
 
-* Activation of the estimated usage metrics
 * Alert on unexpected traffic spikes
 * Alert when you are getting close to a budget threshold on your indexed logs
 * Import the out of the box Log Management usage dashboard
 
 ## Alert on unexpected spikes
 
-### Activate recommended log usage metrics
+### Logs usage metrics
 
-Turn on the [recommended log usage metrics][1] to start tracking the number of ingested logs, ingested bytes, and indexed logs. Navigate to the [Generate Metrics][2] page to enable your log usage metrics (those metrics are free and kept for 15 months):
+By default, [log usage metrics][1] are available to track the number of ingested logs, ingested bytes and indexed logs. Those metrics are free and kept for 15 months:
 
 {{< img src="logs/processing/logs_to_metrics/estimated_usage_metrics.png" alt="Recommended Usage Metrics" responsive="true" style="width:80%;">}}
 
@@ -61,9 +60,7 @@ From log usage metrics, an estimated usage Dashboard can also be built to monito
 
 **Reminder**: The metrics used in this dashboard are estimates and might differ from official billing numbers.
 
-To import this dashboard, copy the [estimated usage dashboard JSON definition][6] and import it in a new Screenboard:
-
-{{< img src="logs/guide/dashboard_import.png" alt="Log estimated usage dashboard"  style="width:30%;">}}
+To import this dashboard, copy the [estimated usage dashboard JSON definition][6] and paste it as a new Dashboard. Alternatively use the `Import Dashboard JSON` option in the settings cog menu in the upper right corner of a new dashboard.
 
 ## Monitor indexed logs with fixed threshold
 

@@ -31,6 +31,18 @@ further_reading:
 
 - 統合サービスタグ付けには、[予約済みタグ][1]の新しいコンフィギュレーションに対応するトレーサーのバージョンが必要です。詳細は、言語別の[セットアップ手順][3]をご覧ください。
 
+
+| 言語         | トレーサー最小バージョン |
+|--------------|------------|
+| .NET    |  1.17.0+       |
+| C++    |  1.1.4+       |
+| Go         |  1.24.0+       |
+| Java   |  0.50.0+      |
+| Node    |  0.20.3+       |
+| PHP  |  0.47.0 以降      |
+| Python  |  0.38.0+      |
+| Ruby  |  0.34.0+      |
+
 - 統合サービスタグ付けには、タグの構成に関する知識が必要です。タグの構成方法がわからない場合は、コンフィギュレーションに進む前に、[タグの概要][4]および[タグの付け方][5]のドキュメントをお読みください。
 
 ## コンフィギュレーション
@@ -484,7 +496,7 @@ CloudFormation スタックで、[Datadog Forwarder][14] 用に `DdFetchLambdaTa
 {{< partial name="whats-next/whats-next.html" >}}
 
 
-[1]: /ja/getting_started/tagging/#defining-tags
+[1]: /ja/getting_started/tagging/
 [2]: /ja/getting_started/agent
 [3]: /ja/tracing/setup
 [4]: /ja/getting_started/tagging/
